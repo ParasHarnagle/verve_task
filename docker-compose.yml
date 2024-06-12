@@ -1,0 +1,18 @@
+services:
+  redis:
+    image: redis:latest
+    container_name: my-redis-container
+    platform: linux/arm64
+    ports:
+      - "6379:6379"
+
+  verve:
+    build:
+      context: .
+    container_name: verve
+    ports:
+      - "1321:1321"
+    depends_on:
+      - redis
+    environment:
+      - REDIS_ADDR=redis:6379 
