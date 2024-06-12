@@ -10,6 +10,8 @@ Redis storage is used to show case  an optmized approach for million records ser
 In docker compose promotions.csv can be mapped from local volume to the service(verve) volume to be replaced after cleanup
 A better approch can be placed with creating a fileserver to upload the promotions.csv
 ## Usage
+## for "arm64" based archtitecture or mac M series processors, uncomment line number "5" in docker-compose.yml
+
 This backend application can run via "docker compose".
 
 ```
