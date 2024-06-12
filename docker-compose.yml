@@ -2,7 +2,7 @@ services:
   redis:
     image: redis:latest
     container_name: my-redis-container
-    platform: linux/arm64
+    #platform: linux/arm64
     ports:
       - "6379:6379"
 
