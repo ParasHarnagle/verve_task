@@ -14,5 +14,7 @@ services:
       - "1321:1321"
     depends_on:
       - redis
+    volumes:
+      - ./promotion.csv:/app/promotion.csv
     environment:
       - REDIS_ADDR=redis:6379 

@@ -17,6 +17,9 @@ type Promotion struct {
 func GetPromotionFromDatabase(id string) (Promotion, error) {
 	file, err := os.Open("promotions.csv")
 	if err != nil {
+		if os.IsNotExist(err) {
+			return Promotion{}, fmt.Errorf("promotions.csv is not present, kindly upload it")
+		}
 		return Promotion{}, err
 	}
 	defer file.Close()
@@ -47,11 +50,9 @@ func GetPromotionFromDatabase(id string) (Promotion, error) {
 
 // DelFile deletes the promo file
 func DelFile() error {
-	file, err := os.OpenFile("promotions.csv", os.O_WRONLY|os.O_TRUNC, 0644)
+	err := os.Remove("promotion.csv`")
 	if err != nil {
 		return err
 	}
-	defer file.Close()
-
 	return nil
 }

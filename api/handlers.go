@@ -16,7 +16,11 @@ func GetPromotionHandler(c *gin.Context) {
 	if err != nil {
 		p, err = models.GetPromotionFromDatabase(id)
 		if err != nil {
-			c.JSON(http.StatusNotFound, gin.H{"error": "promotion not found"})
+			if err.Error() == "promotions.csv is not present, kindly upload it" {
+				c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+			} else {
+				c.JSON(http.StatusNotFound, gin.H{"error": "promotion not found"})
+			}
 			return
 		}
 
